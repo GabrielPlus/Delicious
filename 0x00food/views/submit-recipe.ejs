@@ -81,3 +81,50 @@
 
   </div>
 </div>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const uploadForm = document.getElementById('uploadForm');
+    const uploadInput = document.getElementById('imageInput');
+    const uploadButton = document.getElementById('uploadButton');
+    const uploadProgress = document.getElementById('uploadProgress');
+
+    uploadButton.addEventListener('click', function () {
+      const formData = new FormData(uploadForm);
+
+      // Make a POST request to handle the file upload
+      fetch('/submit-recipe', {
+        method: 'POST',
+        body: formData,
+      })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error('Upload failed');
+          }
+          return response.json();
+        })
+        .then((data) => {
+          // Handle success (you can redirect or display a success message)
+          console.log('Upload successful:', data);
+        })
+        .catch((error) => {
+          // Handle error (you can display an error message)
+          console.error('Upload failed:', error);
+        });
+    });
+
+    uploadInput.addEventListener('change', function () {
+      const formData = new FormData(uploadForm);
+
+      // Make a POST request to get the progress
+      fetch('/upload/progress', {
+        method: 'POST',
+        body: formData,
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          // Update the progress bar
+          uploadProgress.value = data.progress;
+        });
+    });
+  });
+</script>

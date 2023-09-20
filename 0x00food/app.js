@@ -8,6 +8,10 @@ const flash = require('connect-flash');
 const app = express();
 const port = process.env.PORT || 3000;
 
+const mongoose = require('mongoose');
+
+// Set the strictQuery option to false to suppress the warning.
+mongoose.set('strictQuery', false);
 require('dotenv').config();
 
 app.use(express.urlencoded( { extended: true } ));
