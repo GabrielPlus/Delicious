@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const serverIp = '127.0.0.1'; 
-const localDbUrl = `mongodb://${serverIp}:27017/Recip`;
+const localDbUrl = `mongodb://${serverIp}:27017/delicious`;
 
 mongoose.connect(localDbUrl, { useNewUrlParser: true, useUnifiedTopology: true });
 
