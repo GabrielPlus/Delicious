@@ -11,6 +11,6 @@ db.once('open', function(){
   console.log('Connected to mongodb Successfully')
 });
 
-// Modelss
+// Models
 require('./Category');
 require('./Recipe');
